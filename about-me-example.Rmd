@@ -2,11 +2,11 @@
 title: "About Me"
 author: "Eric C. Anderson"
 output:
-  html_document:
-    toc: yes
   word_document:
     toc: yes
   pdf_document:
+    toc: yes
+  html_document:
     toc: yes
 bibliography: references.bib
 ---
@@ -37,19 +37,19 @@ the use of Monte Carlo methods for inference from population genetic models.
 
 After a two-year postdoc at Berkeley, I started working for the National Marine
 Fisheries Service in Santa Cruz, CA.  I actually did become a marine biologist,
-sort of! I still work for NMFS, but a year and a half
-ago I moved to Fort Collins with Kristen, and have an affiliate position
-in FWCB.
+sort of! I still work for NMFS, but five and a half years
+ago I moved to Fort Collins with Kristen, and have now have affiliate position
+in Biology and in FWCB.
 
 When I am not working I love getting out and being active. My top four things
 to do are:
 
 1. Snorkeling in rivers and creeks, backpacking, and hiking (all with my family),
-1. Playing hockey (I learned to skate after moving here.  What a blast!),
-1. Biking,
+1. Figure skating (I learned to skate after moving here.  What a blast!),
+1. Biking, both road and mountain,
 1. Playing with our pair of awesome, springy cats.  
 
-Here is a picture of me with daughter Zoe, looking for aquatic invertebrates
+Here is a picture of me with daughter Zoë, looking for aquatic invertebrates
 above the CSU Mountain Campus.
 
 ```{r me_pic, echo=FALSE, out.width="500px"}
@@ -95,6 +95,60 @@ $$
 \sum_{x_{C\backslash i} \in \mathcal{X}_{C\backslash i}}
 h_j(x_{C\backslash i}, x_i) \prod_{k\in C\backslash i} \mu_{v_k\longrightarrow f_j}(x_k).
 $$
+And, to really update this document, I am going to throw in some equations
+deriving Fisher information for the WGSassign paper that I did with
+Matt deSaix, Marina Rodriguez and Kristen Ruegg, that is set to come out
+in _Methods in Ecology and Evolution_ sometime soon...
+
+We start by finding the first derivative:
+$$
+\frac{\partial L_i(\theta)}{\partial \theta} = \frac{\partial}{\partial \theta} \log\biggl[ g_0 (1-\theta)^2 + g_1 2\theta(1-\theta) + g_2 \theta^2\biggr].
+$$
+Let
+$$
+\begin{aligned}
+u &=  g_0 (1-\theta)^2 + g_1 2\theta(1-\theta) + g_2 \theta^2 \\
+   &=  g_0 (1-2\theta + \theta^2) + g_1(2\theta-2\theta^2) + g_2 \theta^2,
+\end{aligned}
+$$
+and note that
+$$
+\begin{aligned}
+\frac{\partial u}{\partial \theta} &= g_{0}(2\theta - 2) + g_{1}(2-4\theta) + g_{2}2\theta \\
+& = 2\theta(g_{0} + g_{2} - 2g_{1}) + 2(g_{1} - g_{0}).
+\end{aligned}
+$$
+Since $\partial \log(u)/ \partial \theta = (\partial u/\partial \theta)u^{-1}$, we have that
+$$
+\frac{\partial L_i(\theta)}{\partial \theta} = 
+\biggl(2\theta(g_{0} + g_{2} - 2g_{1}) + 2(g_{1} - g_{0})\biggr)
+\biggl(g_{0}(1-\theta)^2 + g_{1}2\theta(1-\theta) + g_{2}\theta^2\biggr)^{-1}.
+$$
+Proceeding, define $v$ and $w$ as follows:
+$$
+\begin{aligned}
+v &= 2\theta(g_{i,0} + g_{i,2} - 2g_{i,1}) + 2(g_{i,1} - g_{i,0}) &= \frac{\partial u}{\partial \theta} \\
+w &= \biggl(g_{i,0}(1-\theta)^2 + g_{i,1}2\theta(1-\theta) + g_{i,2}\theta^2\biggr)^{-1} &= u^{-1},
+\end{aligned}
+$$
+and note that we can rewrite $\frac{\partial L_i(\theta)}{\partial \theta} = vw$, and take the derivative of that easily using the
+product rule: $(vw)' = v'w + w'v$. To do so, we first find the derivatives
+$$
+\begin{aligned}
+v' &= \frac{\partial v}{\partial \theta} =  2(g_{0} + g_{2} - 2g_{1}) \\
+w' &= \frac{\partial w}{\partial \theta} = -u^{-2}\frac{\partial u}{\partial \theta} = -u^{-2}v,
+\end{aligned}
+$$
+then we put them together with the product rule
+$$
+\begin{aligned}
+\frac{\partial^2 L_i(\theta)}{\partial \theta^2} &= v'w + vw' = \frac{v'}{u} - \frac{v^2}{u^2} \\
+  &= \frac{2(g_{0} + g_{2} - 2g_{1})}{g_{0}(1-\theta)^2 + g_{1}2\theta(1-\theta) + g_{2}\theta^2} -
+  \left(\frac{2\theta(g_{0} + g_{2} - 2g_{1}) + 2(g_{1} - g_{0})}{g_{0}(1-\theta)^2 + g_{1}2\theta(1-\theta) + g_{2}\theta^2}\right)^2.
+\end{aligned}
+$$
+Restoring the $\mbox{}_{k,\ell}$ subscript to $\theta$, and the $\mbox{}^{(i)}$ superscript and $\ell$ subscript to $g$, negating, taking the sum over the $n_k$ individuals and evaluating at the MLE yields $I^{(i)}_{o}(\theta_{k,\ell})$.
+
 
 ## My computing experience
 
