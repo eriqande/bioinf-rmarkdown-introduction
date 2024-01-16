@@ -22,7 +22,7 @@ RMarkdown outputs of that file to see what they look like:
 
 To learn more about RMarkdown, as part of this assigment, you are also
 expected to download RStudio’s [RMarkdown Cheat
-Sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 and study it carefully. If you are completely new to RMarkdown, some of
 it might be mysterious, but keep coming back to these sorts of RStudio
 cheat sheets. I learn something new every time I read them.
