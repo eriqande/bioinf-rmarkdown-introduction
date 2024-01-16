@@ -42,12 +42,3 @@ For example:
   - Try also rendering your document to a Slidy presentation. (But note
     that you may wish to rename the document so doing this does not
     overwrite your plain old `about-me.html` file.)
-
-**Turning in your assignment**
-
-Once you are done. Commit all your changes (feel free to make
-intermediate commits as well) and any new files, and push those back to
-GitHub. You should commit, at a minimum, `about-me.Rmd` and
-`about-me.html`, `about-me.pdf`, and `about-me.docx`.
-
-That constitutes turning the assignment in.
